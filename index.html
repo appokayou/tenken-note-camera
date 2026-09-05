@@ -1,10 +1,24 @@
+
 <!doctype html>
 <html lang="ja">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>点検野帳カメラ | サポート</title>
-  <meta name="description" content="点検野帳カメラは、PDFや写真台紙に損傷位置、写真、写真番号、径間、メモ、音声メモをまとめて記録できる現場向け点検カメラアプリです。">
+  <title>点検野帳カメラ｜橋梁点検・現場写真の撮影と整理をiPadで</title>
+  <meta name="description" content="点検野帳カメラは、橋梁・構造物点検の現場写真を撮影し、写真番号、径間、コメント、音声メモをiPadで整理できる点検写真アプリです。PDFや写真台紙への損傷位置記録、ZIP出力にも対応します。">
+  <link rel="canonical" href="https://appokayou.github.io/tenken-note-camera/">
+  <link rel="icon" href="https://appokayou.github.io/tenken-note/app-icon.png">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta property="og:site_name" content="点検野帳カメラ">
+  <meta property="og:title" content="点検野帳カメラ｜橋梁点検・現場写真の撮影と整理をiPadで">
+  <meta property="og:description" content="橋梁・構造物点検の点検写真、写真番号、径間、コメント、音声メモをiPadで整理できる現場向けカメラアプリです。">
+  <meta property="og:url" content="https://appokayou.github.io/tenken-note-camera/">
+  <meta property="og:image" content="https://appokayou.github.io/tenken-note/app-icon.png">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="点検野帳カメラ｜橋梁点検・現場写真の撮影と整理をiPadで">
+  <meta name="twitter:description" content="点検写真を撮ったその場で、写真番号やコメントと一緒に整理できるiPad向けアプリです。">
+  <meta name="twitter:image" content="https://appokayou.github.io/tenken-note/app-icon.png">
   <style>
     :root {
       color-scheme: light;
@@ -12,50 +26,42 @@
       --muted: #687386;
       --line: #dce3ed;
       --panel: #ffffff;
-      --soft: #f5f8fc;
       --blue: #007aff;
       --blue-deep: #0758bd;
-      --gold: #b89144;
-      --shadow: 0 20px 55px rgba(24, 41, 77, 0.14);
+      --gold: #a97818;
+      --red: #ff3b30;
+      --shadow: 0 18px 48px rgba(24, 41, 77, 0.13);
     }
     * { box-sizing: border-box; }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Yu Gothic UI", sans-serif;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 80% 0%, rgba(0, 122, 255, 0.09), transparent 34rem),
-        linear-gradient(180deg, #ffffff 0%, #f4f7fb 46%, #ffffff 100%);
+      background: linear-gradient(180deg, #ffffff 0%, #f4f7fb 46%, #ffffff 100%);
       line-height: 1.75;
     }
     a { color: var(--blue-deep); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
     header {
-      padding: 22px 0 16px;
-      border-bottom: 1px solid rgba(220, 227, 237, 0.8);
-      backdrop-filter: blur(16px);
+      padding: 18px 0;
+      border-bottom: 1px solid rgba(220, 227, 237, 0.86);
       position: sticky;
       top: 0;
-      background: rgba(255, 255, 255, 0.82);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(16px);
       z-index: 10;
     }
     .nav { display: flex; align-items: center; justify-content: space-between; gap: 18px; }
-    .brand { display: flex; align-items: center; gap: 14px; font-weight: 800; font-size: 18px; }
-    .icon {
-      width: 46px;
-      height: 46px;
-      border-radius: 12px;
-      box-shadow: 0 9px 22px rgba(0, 95, 200, 0.22);
-      overflow: hidden;
-      flex: 0 0 auto;
-    }
-    .nav-links { display: flex; align-items: center; gap: 18px; font-size: 14px; font-weight: 700; }
-    .hero { padding: 70px 0 58px; }
-    .hero-grid { display: grid; grid-template-columns: 1.02fr 0.98fr; gap: 44px; align-items: center; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 18px; color: var(--ink); }
+    .icon { width: 44px; height: 44px; border-radius: 10px; box-shadow: 0 8px 20px rgba(0, 95, 200, 0.18); }
+    .nav-links { display: flex; align-items: center; gap: 16px; font-size: 14px; font-weight: 700; }
+    .hero { padding: 64px 0 52px; }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 44px; align-items: center; }
     .eyebrow { color: var(--gold); font-weight: 800; letter-spacing: .08em; font-size: 13px; }
-    h1 { font-size: clamp(38px, 5vw, 68px); line-height: 1.05; margin: 12px 0 22px; letter-spacing: 0; }
-    .lead { font-size: clamp(17px, 2vw, 21px); color: #3e4a5f; margin: 0 0 28px; }
+    h1 { font-size: clamp(36px, 5vw, 64px); line-height: 1.08; margin: 12px 0 20px; letter-spacing: 0; }
+    .lead { font-size: clamp(17px, 2vw, 21px); color: #3e4a5f; margin: 0 0 22px; }
+    .hero-points { display: grid; gap: 8px; margin: 0 0 26px; padding: 0; list-style: none; color: #3e4a5f; font-weight: 700; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
     .button {
       display: inline-flex;
@@ -63,42 +69,27 @@
       justify-content: center;
       min-height: 46px;
       padding: 0 18px;
-      border-radius: 10px;
+      border-radius: 8px;
       font-weight: 800;
       border: 1px solid var(--line);
       background: #fff;
       box-shadow: 0 8px 18px rgba(23, 32, 51, 0.08);
     }
     .button.primary { background: var(--blue); color: #fff; border-color: var(--blue); }
-    .note { color: var(--muted); font-size: 13px; margin-top: 14px; }
+    .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
     .device {
       border: 1px solid var(--line);
-      border-radius: 24px;
+      border-radius: 22px;
       background: linear-gradient(145deg, #ffffff, #eef4fb);
       box-shadow: var(--shadow);
-      padding: 20px;
+      padding: 18px;
       min-height: 420px;
     }
-    .screen {
-      border-radius: 16px;
-      background: #fff;
-      border: 1px solid #d8e0eb;
-      overflow: hidden;
-      min-height: 380px;
-      display: grid;
-      grid-template-rows: auto 1fr;
-    }
-    .screen-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 18px;
-      border-bottom: 1px solid var(--line);
-      font-weight: 800;
-    }
+    .screen { border-radius: 14px; background: #fff; border: 1px solid #d8e0eb; overflow: hidden; min-height: 380px; display: grid; grid-template-rows: auto 1fr; }
+    .screen-bar { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; border-bottom: 1px solid var(--line); font-weight: 800; }
     .screen-body { display: grid; grid-template-columns: 1fr 220px; min-height: 320px; }
     .plan {
-      margin: 24px;
+      margin: 22px;
       border: 2px solid #1e2530;
       background:
         linear-gradient(#f7f7f7 1px, transparent 1px),
@@ -106,110 +97,86 @@
       background-size: 28px 28px;
       position: relative;
     }
-    .pin {
-      position: absolute;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: #ff3b30;
-      color: #fff;
-      display: grid;
-      place-items: center;
-      font-weight: 900;
-      box-shadow: 0 8px 18px rgba(255, 59, 48, 0.26);
-    }
+    .pin { position: absolute; width: 38px; height: 38px; border-radius: 50%; background: var(--red); color: #fff; display: grid; place-items: center; font-weight: 900; box-shadow: 0 8px 18px rgba(255, 59, 48, 0.24); }
     .pin.one { left: 56%; top: 28%; }
     .pin.two { left: 38%; top: 58%; }
-    .mark {
-      position: absolute;
-      width: 130px;
-      height: 48px;
-      border: 6px solid #ff3b30;
-      border-top: 0;
-      border-radius: 50%;
-      transform: rotate(-7deg);
-      left: 35%;
-      top: 55%;
-    }
+    .mark { position: absolute; width: 130px; height: 48px; border: 6px solid var(--red); border-top: 0; border-radius: 50%; transform: rotate(-7deg); left: 35%; top: 55%; }
     .list { border-left: 1px solid var(--line); padding: 22px 18px; background: #fbfcfe; }
-    .list h3 { margin: 0 0 18px; font-size: 18px; }
-    .row { padding: 12px 0; border-bottom: 1px solid var(--line); }
+    .list h3 { margin: 0 0 16px; font-size: 18px; }
+    .row { padding: 11px 0; border-bottom: 1px solid var(--line); }
     .row strong { display: block; }
     .row span { color: var(--muted); font-weight: 700; font-size: 13px; }
     section { padding: 34px 0; }
-    .section-title { font-size: 32px; line-height: 1.25; margin: 0 0 12px; }
-    .section-lead { color: var(--muted); max-width: 760px; margin: 0 0 24px; }
+    .section-title { font-size: clamp(26px, 3vw, 34px); line-height: 1.25; margin: 0 0 12px; letter-spacing: 0; }
+    .section-lead { color: var(--muted); max-width: 800px; margin: 0 0 24px; }
     .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 22px;
-      box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06);
-    }
+    .card { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 22px; box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06); }
     .card .num { color: var(--blue); font-weight: 900; font-size: 14px; }
     .card h3 { margin: 8px 0 8px; font-size: 20px; }
     .card p { color: var(--muted); margin: 0; }
+    .scene-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; padding: 0; margin: 0; list-style: none; }
+    .scene-list li { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; font-weight: 800; }
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
     .steps { counter-reset: step; display: grid; gap: 12px; }
-    .step {
-      display: grid;
-      grid-template-columns: 48px 1fr;
-      gap: 16px;
-      align-items: start;
-      background: #fff;
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 18px;
-    }
-    .step::before {
-      counter-increment: step;
-      content: counter(step);
-      width: 38px;
-      height: 38px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      background: #eef6ff;
-      color: var(--blue);
-      font-weight: 900;
-    }
-    .support {
-      background: #111827;
-      color: #fff;
-      border-radius: 22px;
-      padding: 34px;
-      box-shadow: var(--shadow);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 22px;
-      align-items: center;
-    }
-    .support p { color: #cbd5e1; margin: 8px 0 0; }
+    .step { display: grid; grid-template-columns: 48px 1fr; gap: 16px; align-items: start; background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 18px; }
+    .step::before { counter-increment: step; content: counter(step); width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: #eef6ff; color: var(--blue); font-weight: 900; }
+    .faq { display: grid; gap: 12px; }
+    details { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+    summary { cursor: pointer; font-weight: 800; }
+    details p { color: var(--muted); margin: 10px 0 0; }
+    .cta { background: #111827; color: #fff; border-radius: 12px; padding: 30px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; box-shadow: var(--shadow); }
+    .cta p { color: #cbd5e1; margin: 6px 0 0; }
     footer { color: var(--muted); padding: 36px 0 48px; font-size: 13px; }
-    @media (max-width: 820px) {
-      .hero-grid, .cards, .screen-body, .support { grid-template-columns: 1fr; }
+    @media (max-width: 860px) {
+      .hero-grid, .cards, .screen-body, .compare, .cta, .scene-list { grid-template-columns: 1fr; }
       .nav { align-items: flex-start; }
       .nav-links { flex-wrap: wrap; justify-content: flex-end; gap: 10px; }
-      .hero { padding-top: 42px; }
+      .hero { padding-top: 40px; }
       .device { padding: 12px; min-height: auto; }
       .screen-body { min-height: 0; }
       .list { border-left: 0; border-top: 1px solid var(--line); }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MobileApplication",
+        "name": "点検野帳カメラ",
+        "applicationCategory": "ProductivityApplication",
+        "operatingSystem": "iOS, iPadOS",
+        "description": "点検野帳カメラは、PDFや写真台紙を長押しして損傷位置を記録し、点検写真、写真番号、径間、メモ、音声メモをまとめて整理できるアプリです。",
+        "url": "https://appokayou.github.io/tenken-note-camera/",
+        "image": "https://appokayou.github.io/tenken-note/app-icon.png",
+        "downloadUrl": "https://apps.apple.com/jp/app/id6784942986",
+        "author": { "@type": "Person", "name": "youji okamura" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "橋梁点検の点検写真をiPadで整理できますか", "acceptedAnswer": { "@type": "Answer", "text": "点検野帳カメラは、橋梁・構造物点検の現場写真、写真番号、径間、メモ、音声メモをまとめて整理できます。" } },
+          { "@type": "Question", "name": "写真番号を管理できますか", "acceptedAnswer": { "@type": "Answer", "text": "損傷ごとに写真番号を登録でき、写真ページ範囲から番号を推定する機能もあります。PDFや写真帳の形式により完全に一致しない場合があるため画面で確認しながら利用します。" } },
+          { "@type": "Question", "name": "点検野帳と点検野帳カメラの違いは何ですか", "acceptedAnswer": { "@type": "Answer", "text": "点検野帳は点検記録、PDF図面、写真、コメントをまとめて管理するアプリです。点検野帳カメラは現場写真の撮影、写真番号、コメント整理に重点を置いたアプリです。" } }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header>
     <div class="wrap nav">
       <a class="brand" href="#top" aria-label="点検野帳カメラ">
-      <img class="icon" src="https://appokayou.github.io/tenken-note/app-icon.png" alt="点検野帳カメラ アイコン">
+        <img class="icon" src="https://appokayou.github.io/tenken-note/app-icon.png" alt="点検野帳カメラアプリのアイコン">
         <span>点検野帳カメラ</span>
       </a>
       <nav class="nav-links" aria-label="ページ内メニュー">
-        <a href="#features">機能</a>
-        <a href="#updates">最新情報</a>
-        <a href="#workflow">使い方</a>
+        <a href="#features">できること</a>
+        <a href="#scenes">利用シーン</a>
+        <a href="#faq">FAQ</a>
         <a href="privacy.html">プライバシー</a>
-        <a href="mailto:appokayou@gmail.com">お問い合わせ</a>
+        <a href="https://apps.apple.com/jp/app/id6784942986" target="_blank" rel="noopener">App Store</a>
       </nav>
     </div>
   </header>
@@ -218,16 +185,21 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
-          <div class="eyebrow">FIELD NOTEBOOK CAMERA</div>
-          <h1>PDF野帳に、写真と損傷記録をまとめる。</h1>
-          <p class="lead">点検野帳カメラは、PDFや写真台紙に損傷位置を記録し、写真・写真番号・径間・メモ・音声メモをひとつに整理できる現場向けアプリです。</p>
+          <div class="eyebrow">INSPECTION PHOTO CAMERA FOR iPad</div>
+          <h1>点検写真を、撮ったその場で整理</h1>
+          <p class="lead">橋梁・構造物点検の写真撮影、写真番号、コメント整理をiPadで。点検野帳カメラは、PDFや写真台紙に損傷位置を記録し、現場写真とメモを後から確認しやすい形で保存する点検写真アプリです。</p>
+          <ul class="hero-points">
+            <li>橋梁点検、道路構造物点検、コンクリート構造物の変状記録に</li>
+            <li>写真番号、径間、メモ、音声メモを損傷ごとに整理</li>
+            <li>ZIP、写真フォルダ、Web点検野帳として書き出し可能</li>
+          </ul>
           <div class="actions">
-            <a class="button primary" href="https://apps.apple.com/jp/app/id6782474651" target="_blank" rel="noopener">App Storeで見る</a>
-            <a class="button" href="mailto:appokayou@gmail.com">サポートに連絡</a>
+            <a class="button primary" href="https://apps.apple.com/jp/app/id6784942986" target="_blank" rel="noopener">App Storeでダウンロード</a>
+            <a class="button" href="#features">機能を見る</a>
           </div>
           <p class="note">Version 1.0.1では、PDF読み込み、ペン色、写真ページ範囲、音声で写真移動の使いやすさを改善しました。</p>
         </div>
-        <div class="device" aria-label="アプリ画面イメージ">
+        <div class="device" aria-label="点検野帳カメラの画面イメージ">
           <div class="screen">
             <div class="screen-bar">
               <span>点検野帳カメラ</span>
@@ -242,7 +214,7 @@
               <aside class="list">
                 <h3>写真一覧</h3>
                 <div class="row"><strong>写真 2 鉄筋露出</strong><span>P12 / 第1径間</span></div>
-                <div class="row"><strong>写真 1 ひびわれ</strong><span>P12 / 径間未入力</span></div>
+                <div class="row"><strong>写真 1 ひびわれ</strong><span>P12 / メモあり</span></div>
                 <div class="row"><strong>保存データ</strong><span>ZIP / HTML / photos</span></div>
               </aside>
             </div>
@@ -253,49 +225,37 @@
 
     <section id="features">
       <div class="wrap">
-        <h2 class="section-title">現場の記録を、後から見返せる形へ。</h2>
-        <p class="section-lead">点検中に入力した内容を、PDF野帳・写真・Web閲覧用データとして整理します。作業後の確認、写真整理、調書作成の前段取りに使いやすい構成です。</p>
+        <h2 class="section-title">このアプリでできること</h2>
+        <p class="section-lead">点検写真アプリや現場写真iPadアプリを探している技術者が、写真番号管理とコメント整理を現場で進めるための機能です。掲載内容は既存サイトとApp Store説明で確認できる範囲に限定しています。</p>
         <div class="cards">
-          <article class="card">
-            <div class="num">01</div>
-            <h3>損傷位置をピンで記録</h3>
-            <p>PDFや写真台紙を長押しして、損傷位置を番号付きで残せます。ペンは色を選んで書き込めます。</p>
-          </article>
-          <article class="card">
-            <div class="num">02</div>
-            <h3>写真とメモを一括管理</h3>
-            <p>損傷ごとに写真、写真番号、径間、寸法メモ、音声メモをまとめて確認できます。写真ページ範囲から番号も推定できます。</p>
-          </article>
-          <article class="card">
-            <div class="num">03</div>
-            <h3>フォルダで分かる保存</h3>
-            <p>保存時はZIPとして書き出し、写真フォルダ、Web点検野帳、保存データを分かりやすくまとめます。</p>
-          </article>
+          <article class="card"><div class="num">01</div><h3>現場写真撮影</h3><p>カメラ撮影、写真ライブラリ、iCloud DriveやDropboxなどから写真を追加できます。</p></article>
+          <article class="card"><div class="num">02</div><h3>写真番号管理</h3><p>損傷ごとに写真番号を管理できます。写真ページ範囲を指定すると、写真番号の範囲を推定できます。</p></article>
+          <article class="card"><div class="num">03</div><h3>コメント入力</h3><p>径間、寸法メモ、メモ、音声メモを写真や損傷位置と一緒に保存できます。</p></article>
+          <article class="card"><div class="num">04</div><h3>写真整理</h3><p>保存時はZIPとして書き出し、写真フォルダ、Web点検野帳、保存データをまとめて管理できます。</p></article>
+          <article class="card"><div class="num">05</div><h3>損傷位置の記録</h3><p>PDFや写真台紙を長押しして、損傷位置を番号付きで残せます。ペンは色を選んで書き込めます。</p></article>
+          <article class="card"><div class="num">06</div><h3>iPadでの現場作業効率化</h3><p>撮影、番号、コメントを現場でまとめることで、帰社後の写真整理や点検結果確認の手間を減らします。</p></article>
+        </div>
+        <div class="actions" style="margin-top:22px;">
+          <a class="button primary" href="https://apps.apple.com/jp/app/id6784942986" target="_blank" rel="noopener">App Storeで点検野帳カメラを見る</a>
         </div>
       </div>
     </section>
 
-    <section id="updates">
+    <section id="scenes">
       <div class="wrap">
-        <h2 class="section-title">Version 1.0.1の改善点</h2>
-        <p class="section-lead">PDFの形式や写真帳の作り方によって使いにくかった部分を中心に、現場で迷いにくい操作へ改善しました。</p>
-        <div class="cards">
-          <article class="card">
-            <div class="num">PDF</div>
-            <h3>読み込みと表示を改善</h3>
-            <p>一部のPDFで台紙画像が正しく表示されない問題を修正し、PDF24などで作成されたPDFも扱いやすくしました。</p>
-          </article>
-          <article class="card">
-            <div class="num">PEN</div>
-            <h3>ペン色を選択</h3>
-            <p>赤、青、黄、黒、白からペン色を選べるようにしました。図面や写真の上でも内容を見分けやすくなります。</p>
-          </article>
-          <article class="card">
-            <div class="num">PHOTO</div>
-            <h3>写真番号まわりを改善</h3>
-            <p>損傷写真のページ範囲、音声で写真ページへ移動するボタン、台紙の長押し操作の案内を分かりやすくしました。</p>
-          </article>
-        </div>
+        <h2 class="section-title">利用シーン</h2>
+        <p class="section-lead">橋梁点検写真の撮影、写真番号の控え、損傷位置と写真の対応確認など、現場写真の整理が必要な業務で使いやすい構成です。</p>
+        <ul class="scene-list">
+          <li>橋梁定期点検</li><li>道路構造物点検</li><li>コンクリート構造物の変状記録</li>
+          <li>現場写真の整理</li><li>点検写真のコメント記録</li><li>写真番号管理</li>
+        </ul>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="section-title">点検写真を現場で整理するメリット</h2>
+        <p class="section-lead">点検写真は枚数が増えるほど、撮影後に写真番号、損傷位置、コメントを照合する時間がかかります。現場で撮影したその場で写真番号やメモを残しておくと、後から写真を探す作業を減らせます。点検野帳カメラは、橋梁点検や構造物点検の写真撮影と整理をiPadで進めたい方向けのアプリです。</p>
       </div>
     </section>
 
@@ -313,13 +273,21 @@
     </section>
 
     <section>
+      <div class="wrap compare">
+        <article class="card"><h2 class="section-title">点検野帳カメラ</h2><p>現場写真の撮影と整理に特化したアプリです。写真番号、径間、メモ、音声メモをまとめて扱いたい場合に向いています。</p></article>
+        <article class="card"><h2 class="section-title">点検野帳</h2><p>点検記録、PDF図面、写真、コメントをまとめて管理したい場合は、<a href="https://appokayou.github.io/tenken-note/">点検野帳</a>も確認してください。</p></article>
+      </div>
+    </section>
+
+    <section id="faq">
       <div class="wrap">
-        <div class="support">
-          <div>
-            <h2 class="section-title" style="margin:0;">サポート</h2>
-            <p>不具合、使い方、App Store審査に関するお問い合わせはこちらからご連絡ください。</p>
-          </div>
-          <a class="button primary" href="mailto:appokayou@gmail.com">appokayou@gmail.com</a>
+        <h2 class="section-title">FAQ</h2>
+        <div class="faq">
+          <details><summary>橋梁点検の点検写真をiPadで整理できますか</summary><p>点検野帳カメラは、橋梁・構造物点検の現場写真、写真番号、径間、メモ、音声メモをまとめて整理できます。</p></details>
+          <details><summary>写真番号を管理できますか</summary><p>損傷ごとに写真番号を登録できます。写真ページ範囲から番号を推定する機能もありますが、PDFや写真帳の形式によって完全に一致しない場合があるため、画面で確認しながら利用します。</p></details>
+          <details><summary>点検写真にコメントを残せますか</summary><p>写真や損傷位置に関連するメモ、寸法メモ、音声メモを保存できます。点検結果の記録を後から確認しやすくします。</p></details>
+          <details><summary>点検野帳と点検野帳カメラの違いは何ですか</summary><p>点検野帳は点検記録、PDF図面、写真、コメントをまとめて管理するアプリです。点検野帳カメラは現場写真の撮影、写真番号、コメント整理に重点を置いたアプリです。</p></details>
+          <details><summary>どのような現場で使えますか</summary><p>橋梁定期点検、道路構造物点検、コンクリート構造物の変状記録、点検写真の整理、写真番号管理が必要な現場を想定しています。</p></details>
         </div>
       </div>
     </section>
@@ -330,12 +298,25 @@
         <p class="section-lead">写真番号の推定やページ移動は、PDFや写真帳の形式、空欄ページの有無によって完全に一致しない場合があります。必要に応じて画面上の写真一覧やページ表示を確認しながらご利用ください。</p>
       </div>
     </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta">
+          <div>
+            <h2 class="section-title" style="margin:0;">点検写真の撮影と整理を、現場でまとめる</h2>
+            <p>橋梁点検・構造物点検の写真番号管理、コメント記録、写真整理をiPadで進めたい方は、App Storeで詳細をご確認ください。</p>
+          </div>
+          <a class="button primary" href="https://apps.apple.com/jp/app/id6784942986" target="_blank" rel="noopener">App Storeでダウンロード</a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
     <div class="wrap">
-      <div><a href="privacy.html">プライバシーポリシー</a> / <a href="https://appokayou.github.io/tenken-note-camera/">https://appokayou.github.io/tenken-note-camera/</a></div>
-      <div>© 2026 Youji Okamura</div>
+      <div><a href="privacy.html">プライバシーポリシー</a> / <a href="https://appokayou.github.io/tenken-note/">点検野帳</a> / <a href="mailto:appokayou@gmail.com">お問い合わせ</a></div>
+      <div>公開URL: <a href="https://appokayou.github.io/tenken-note-camera/">https://appokayou.github.io/tenken-note-camera/</a></div>
+      <div>&copy; 2026 Youji Okamura</div>
     </div>
   </footer>
 </body>
