@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://appokayou.github.io/tenken-note-camera/sitemap.xml
